@@ -4,7 +4,7 @@ Test task
 
 Steps:
 
-git clone 
+git clone https://github.com/mnjl1/blog-test-task.git
 
 cd blog-test-task
 
