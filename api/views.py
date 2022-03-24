@@ -7,6 +7,9 @@ from rest_framework.decorators import api_view
 
 @api_view(["GET"])
 def get_posts(request):
+    """
+    Display all posts
+    """
     posts = Post.objects.all()
     serializer = serializers.PostSerializer(posts, many=True)
     response = [
@@ -17,6 +20,9 @@ def get_posts(request):
 
 @api_view(["GET"])
 def get_post_by_id(request, pk):
+    """
+    Get post by id
+    """
     post = Post.objects.get(id=pk)
     serializer = serializers.PostSerializer(post, many=False)
     return Response(serializer.data)
@@ -25,7 +31,7 @@ def get_post_by_id(request, pk):
 @api_view(["POST"])
 def create_post(request):
     """
-    Creates new blog record
+    Creates new post record
     """
     data = request.data
     title = data["title"]
@@ -38,7 +44,7 @@ def create_post(request):
 @api_view(["PUT"])
 def update_post(request, pk):
     """
-    Update post
+    Update post record
     """
     data = request.data
     post = Post.objects.get(id=pk)
@@ -70,6 +76,10 @@ def upvote_post(request, pk):
 
 
 class CommentList(generics.ListCreateAPIView):
+    """
+    Create commet
+    """
+
     queryset = Comment.objects.all()
     serializer_class = serializers.CommentSerializer
 

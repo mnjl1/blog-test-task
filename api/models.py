@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Post(models.Model):
+    """
+    Post
+    """
+
     title = models.CharField(max_length=255)
     link = models.URLField()
     created = models.DateTimeField(auto_now_add=True)
@@ -18,6 +22,10 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Comment
+    """
+
     author = models.ForeignKey(
         "auth.User", related_name="users", on_delete=models.CASCADE
     )
