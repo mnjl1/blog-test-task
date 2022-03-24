@@ -2,9 +2,6 @@
 .vscode/
 .idea/
 
-# Docker
-docker-compose.yml
-
 # Vagrant
 .vagrant/
 
