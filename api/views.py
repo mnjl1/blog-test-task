@@ -1,9 +1,7 @@
-from operator import pos
-from urllib import request
 from rest_framework import generics
 from rest_framework.response import Response
 from api import serializers
-from .models import Post
+from .models import Post, Comment
 from rest_framework.decorators import api_view
 
 
@@ -69,3 +67,11 @@ def upvote_post(request, pk):
     post.likes_count = post.likes_count + 1
     post.save()
     return Response("Post upvoted")
+
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = serializers.CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)

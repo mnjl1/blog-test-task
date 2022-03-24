@@ -9,4 +9,5 @@ urlpatterns = [
     path("posts/<int:pk>/update", views.update_post),
     path("posts/<int:pk>/delete", views.delete_post),
     path("posts/<int:pk>/upvote", views.upvote_post),
+    path('posts/comments/', views.CommentList.as_view())
 ]

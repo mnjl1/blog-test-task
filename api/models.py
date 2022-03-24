@@ -13,8 +13,17 @@ class Post(models.Model):
     class Meta:
         ordering = ["created"]
 
-    def likes(self):
-        return self.likes
-
     def __str__(self):
-        return self.title
+        return f"{self.title}, likes: {self.likes_count}"
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(
+        "auth.User", related_name="users", on_delete=models.CASCADE
+    )
+    content = models.TextField(blank=False)
+    created = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["created"]
