@@ -16,5 +16,5 @@ def reset_upvotes():
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(reset_upvotes, "interval", minutes=1)
+    scheduler.add_job(reset_upvotes, "interval", hours=24)
     scheduler.start()
